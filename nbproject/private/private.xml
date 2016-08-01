@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Templates/Blog/UpdateForm.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Templates/Post/AddForm.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Templates/Post/UpdateForm.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Classes/Domain/Validator/BlogValidator.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Classes/Domain/Repository/TagRepository.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Classes/Controller/BlogController.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Partials/Blog/Form.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Partials/TwitterShare.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/ext_localconf.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Classes/Validation/Validator/WordValidator.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Public/Css/Simpleblog.css</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Templates/Post/Show.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Classes/Controller/PostController.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Classes/Validation/Validator/AutocompleteValidator.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Classes/Domain/Repository/BlogRepository.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/ext_emconf.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Classes/Service/GoogleAutocompleteApiService.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Configuration/TypoScript/constants.txt</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Classes/Domain/Model/Post.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Templates/Post/DeleteConfirm.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Templates/Blog/List.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Classes/Domain/Repository/PostRepository.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Configuration/TypoScript/setup.txt</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Classes/Domain/Model/Blog.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Templates/Post/DeleteConfirmation.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3/sysext/extbase/Classes/Persistence/Generic/Query.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Templates/Blog/Show.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3/sysext/extbase/Classes/Persistence/Repository.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Classes/ViewHelpers/HasErrorViewHelper.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Configuration/TCA/tx_simpleblog_domain_model_blog.php</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Layouts/Default.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Templates/Blog/AddForm.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Partials/Error.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Templates/Blog/DeleteConfirm.html</file>
+            <file>file:/var/www/html/typo3templates/htdocs/typo3conf/ext/simpleblog/Resources/Private/Partials/Post/Form.html</file>
+        </group>
+    </open-files>
+</project-private>

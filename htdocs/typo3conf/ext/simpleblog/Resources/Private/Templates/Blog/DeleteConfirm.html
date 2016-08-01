@@ -1,0 +1,20 @@
+<div class="container">
+    <h1>
+        Confirm Delete Blog
+    </h1>
+    
+    <dl class="dl-horizontal">
+        <dt>Blog Title</dt>
+        <dd>{blog.title}</dd>
+        <dt>Blog Description</dt>
+        <dd><f:format.nl2br>{blog.description}</f:format.nl2br></dd>
+    </dl>
+    
+    <f:link.action action="list" class="btn btn-primary margin-bottom">
+        Back to Blog List
+    </f:link.action>
+    <f:form action="delete" object="{blog}" name="blog" additionalAttributes="{role:'form'}">
+        <f:form.submit value="Delete Blog!" class="btn btn-primary" />
+    </f:form>
+    
+</div>

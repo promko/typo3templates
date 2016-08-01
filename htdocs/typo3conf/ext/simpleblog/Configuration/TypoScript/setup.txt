@@ -1,0 +1,87 @@
+
+plugin.tx_simpleblog_bloglisting {
+	view {
+		templateRootPaths.0 = {$plugin.tx_simpleblog_bloglisting.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_simpleblog_bloglisting.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_simpleblog_bloglisting.view.layoutRootPath}
+	}
+	persistence {
+        # storagePid = {$plugin.tx_simpleblog_bloglisting.persistence.storagePid}
+        #storagePid = 3
+        storagePid = 1,4,5,6,7,8
+        #recursive = 1
+        classes {
+            Pluswerk\Simpleblog\Domain\Model\Blog {
+                newRecordStoragePid = 4
+            }
+            Pluswerk\Simpleblog\Domain\Model\Post {
+                newRecordStoragePid = 5
+            }
+            Pluswerk\Simpleblog\Domain\Model\Comment {
+                newRecordStoragePid = 6
+            }
+            Pluswerk\Simpleblog\Domain\Model\Tag {
+                newRecordStoragePid = 7
+            }
+            Pluswerk\Simpleblog\Domain\Model\Author {
+                mapping {
+                    tableName = fe_users
+                    columns {
+                        name.mapOnProperty = fullname
+                    }
+                }
+            }
+        }
+	}
+    settings {
+        loginpage = 9
+        blog {
+            max = 4
+        }
+    }
+}
+
+plugin.tx_simpleblog._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-simpleblog table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-simpleblog table th {
+		font-weight:bold;
+	}
+
+	.tx-simpleblog table td {
+		vertical-align:top;
+	}
+
+	.typo3-messages .message-error {
+		color:red;
+	}
+
+	.typo3-messages .message-ok {
+		color:green;
+	}
+
+)
+
+page {
+    includeCSS {
+        bootstrap = EXT:simpleblog/Resources/Public/Bootstrap/css/bootstrap.min.css
+        simpleblog = EXT:simpleblog/Resources/Public/Css/Simpleblog.css
+    }
+    includeJSLibs {
+        jquery = EXT:simpleblog/Resources/Public/Bootstrap/js/jquery.js
+        bootstrap = EXT:simpleblog/Resources/Public/Bootstrap/js/bootstrap.min.js
+    }
+}
