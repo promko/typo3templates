@@ -12,12 +12,12 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     public function initializeAction() {
         $action = $this->request->getControllerActionName();
 // pruefen, ob eine andere Action ausser "show" aufgerufen wurde
-//        if ($action != 'show') {
-//// Redirect zur Login Seite falls nicht eingeloggt
-//            if (!$GLOBALS['TSFE']->fe_user->user['uid']) {
-//                $this->redirect(NULL, NULL, NULL, NULL, $this->settings['loginpage']);
-//            }
-//        }
+        if ($action != 'show') {
+// Redirect zur Login Seite falls nicht eingeloggt
+            if (!$GLOBALS['TSFE']->fe_user->user['uid']) {
+                $this->redirect(NULL, NULL, NULL, NULL, $this->settings['loginpage']);
+            }
+        }
     }
 
     /**
@@ -43,8 +43,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      * @param \Pluswerk\Simpleblog\Domain\Model\Post $post
      */
     public function addAction(\Pluswerk\Simpleblog\Domain\Model\Blog $blog, \Pluswerk\Simpleblog\Domain\Model\Post $post) {
-        //$post->setPostdate(new \DateTime());
-//$this->postRepository->add($post);
+        $post->setAuthor($this->objectManager->get('Pluswerk\\Simpleblog\\Domain\\Repository\\AuthorRepository')->findOneByUid( $GLOBALS['TSFE']->fe_user->user['uid']));
         $blog->addPost($post);
         $this->objectManager->get('Pluswerk\\Simpleblog\\Domain\\Repository\\BlogRepository')->update($blog);
         $this->redirect('show', 'Blog', NULL, array('blog' => $blog));
