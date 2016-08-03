@@ -1,5 +1,15 @@
+{namespace simpleblog=Pluswerk\Simpleblog\ViewHelpers}
 <f:layout name="Default" />
 <f:section name="main">
+    <simpleblog:isFrontend>
+        <f:then>
+            Frontend!
+        </f:then>
+        <f:else>
+            Backend!
+        </f:else>
+    </simpleblog:isFrontend>
+
     <h1>Show Post</h1>
     <dl class="dl-horizontal">
         <dt>Post title:</dt>
@@ -15,7 +25,10 @@
         </f:for>
         </dd>
         <dt>Post author:</dt>
-        <dd>{post.author.fullname} (Email: {post.author.email})</dd>
+        <dd>{post.author.fullname} (Email: {post.author.email})
+            <br />
+        <simpleblog:gravatar>{post.author.email}</simpleblog:gravatar>
+        </dd>
     </dl>
 
     <h3>Comments</h3>

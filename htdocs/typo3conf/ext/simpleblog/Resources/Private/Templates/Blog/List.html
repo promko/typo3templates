@@ -1,6 +1,8 @@
 <f:layout name="Default">
     <f:section name="main">
-        <simpleblog:dummyText length="400">This is a dummy text! </simpleblog:dummyText>
+        {namespace simpleblog=Pluswerk\Simpleblog\ViewHelpers}
+        <simpleblog:DummyText length="400">This is a dummy text! </simpleblog:DummyText>
+        <h3><simpleblog:tsfe>page|title</simpleblog:tsfe></h3>
         <h1>Blog List</h1>
         <f:form action="list" additionalAttributes="{role:'form'}">
             <div class="form-inline">
