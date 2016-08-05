@@ -15,21 +15,23 @@
         </f:form>
 
         <ul class="list-group">
-            <simpleblog:widget.sort objects="{blogs}" as="sortedBlogs" property="title">
-                <f:for each="{sortedBlogs}" as="blog">
-                    <li class="list-group-item">{blog.title}
-                    <f:link.action action="deleteConfirm" arguments="{blog:blog}" class="btn btn-danger btn-xs pull-right"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        Delete
-                    </f:link.action>            
-                    <f:link.action action="updateForm" arguments="{blog:blog}" class="btn btn-primary btn-xs pull-right margin-right">
-                        Edit
-                    </f:link.action>                
-                    <f:link.action action="show" arguments="{blog:blog}" class="btn btn-success btn-xs pull-right margin-right">
-                        Show
-                    </f:link.action>
-                    </li>
-                </f:for>
-            </simpleblog:widget.sort>
+            <simpleblog:widget.AtoZNav objects="{blogs}" as="filteredBlogs" property="title">
+                <simpleblog:widget.sort objects="{blogs}" as="sortedBlogs" property="title">
+                    <f:for each="{sortedBlogs}" as="blog">
+                        <li class="list-group-item">{blog.title}
+                        <f:link.action action="deleteConfirm" arguments="{blog:blog}" class="btn btn-danger btn-xs pull-right"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            Delete
+                        </f:link.action>            
+                        <f:link.action action="updateForm" arguments="{blog:blog}" class="btn btn-primary btn-xs pull-right margin-right">
+                            Edit
+                        </f:link.action>                
+                        <f:link.action action="show" arguments="{blog:blog}" class="btn btn-success btn-xs pull-right margin-right">
+                            Show
+                        </f:link.action>
+                        </li>
+                    </f:for>
+                </simpleblog:widget.sort>
+            </simpleblog:widget.AtoZNav>
         </ul>
         <p class="text-muted">Es werden maximal {settings.blog.max} Blogs ausgegeben.</p>
 
