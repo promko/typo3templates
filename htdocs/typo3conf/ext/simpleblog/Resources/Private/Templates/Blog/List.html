@@ -16,7 +16,7 @@
 
         <ul class="list-group">
             <simpleblog:widget.AtoZNav objects="{blogs}" as="filteredBlogs" property="title">
-                <simpleblog:widget.sort objects="{blogs}" as="sortedBlogs" property="title">
+                <simpleblog:widget.sort objects="{filteredBlogs}" as="sortedBlogs" property="title">
                     <f:for each="{sortedBlogs}" as="blog">
                         <li class="list-group-item">{blog.title}
                         <f:link.action action="deleteConfirm" arguments="{blog:blog}" class="btn btn-danger btn-xs pull-right"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
