@@ -3,12 +3,12 @@
         {namespace simpleblog=Pluswerk\Simpleblog\ViewHelpers}
         <simpleblog:DummyText length="400">This is a dummy text! </simpleblog:DummyText>
         <h3><simpleblog:tsfe>page|title</simpleblog:tsfe></h3>
-        <h1>Blog List</h1>
+        <h1><f:translate id="blog.list.headline" /></h1>
         <f:form action="list" additionalAttributes="{role:'form'}">
             <div class="form-inline">
                 <div class="form-group">
                     <f:form.textfield name='search' value='{search}' class='form-control' />
-                    <f:form.submit value='Шукай!' class='btn-xs btn-primary'></f:form.submit>
+                    <f:form.submit value="{f:translate(id:'blog.list.button.search')}" class="btn-xs btn-primary" />
 
                 </div>
             </div>
