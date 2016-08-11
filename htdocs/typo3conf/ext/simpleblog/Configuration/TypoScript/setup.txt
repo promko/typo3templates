@@ -106,7 +106,6 @@ plugin.tx_simpleblog_bloglisting {
     }
 }
 
-
 config.linkVars = L
 config.uniqueLinkVars = 1
 config {
@@ -123,3 +122,5 @@ config {
     htmlTag_langKey = de
 }
 [global]
+
+module.tx_simpleblog_bloglisting < plugin.tx_simpleblog_bloglisting
