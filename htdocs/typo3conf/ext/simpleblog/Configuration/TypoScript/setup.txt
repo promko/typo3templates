@@ -98,6 +98,15 @@ ajax {
     10 < tt_content.list.20.simpleblog_bloglisting
 }
 
+plugin.tx_simpleblog_bloglisting {
+    _LOCAL_LANG {
+        de {
+            blog.list.headline = List aller Blogs
+        }
+    }
+}
+
+
 config.linkVars = L
 config.uniqueLinkVars = 1
 config {
