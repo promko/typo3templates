@@ -1,7 +1,8 @@
 <?php
+
 namespace Pluswerk\Simpleblog\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *
  *  Copyright notice
  *
@@ -24,13 +25,12 @@ namespace Pluswerk\Simpleblog\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Blogs
  */
-class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-{
+class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
     /**
      * title
@@ -40,21 +40,21 @@ class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @validate  \Pluswerk\Simpleblog\Validation\Validator\WordValidator(max=3)
      */
     protected $title = '';
-    
+
     /**
      * Description of the blog
      *
      * @var string
      */
     protected $description = '';
-    
+
     /**
      * Picture of the blog
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
     protected $image = null;
-    
+
     /**
      * Blog posts
      *
@@ -63,79 +63,93 @@ class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @lazy
      */
     protected $posts = null;
-    
+
+    /**
+     * crdate
+     * @var DateTime
+     */
+    protected $crdate = null;
+
+    /**
+     * @param \DateTime $crdate
+     * @return void
+     */
+    public function setCrdate(\DateTime $crdate) {
+        $this->crdate = $crdate;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCrdate() {
+        return $this->crdate;
+    }
+
     /**
      * Returns the title
      *
      * @return string $title
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
-    
+
     /**
      * Sets the title
      *
      * @param string $title
      * @return void
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
     }
-    
+
     /**
      * Returns the description
      *
      * @return string $description
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
-    
+
     /**
      * Sets the description
      *
      * @param string $description
      * @return void
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
     }
-    
+
     /**
      * Returns the image
      *
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
      */
-    public function getImage()
-    {
+    public function getImage() {
         return $this->image;
     }
-    
+
     /**
      * Sets the image
      *
      * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
      * @return void
      */
-    public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image)
-    {
+    public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image) {
         $this->image = $image;
     }
-    
+
     /**
      * __construct
      */
-    public function __construct()
-    {
+    public function __construct() {
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
-    
+
     /**
      * Initializes all ObjectStorage properties
      * Do not modify this method!
@@ -144,51 +158,46 @@ class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return void
      */
-    protected function initStorageObjects()
-    {
+    protected function initStorageObjects() {
         $this->posts = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
-    
+
     /**
      * Adds a Post
      *
      * @param \Pluswerk\Simpleblog\Domain\Model\Post $post
      * @return void
      */
-    public function addPost(\Pluswerk\Simpleblog\Domain\Model\Post $post)
-    {
+    public function addPost(\Pluswerk\Simpleblog\Domain\Model\Post $post) {
         $this->posts->attach($post);
     }
-    
+
     /**
      * Removes a Post
      *
      * @param \Pluswerk\Simpleblog\Domain\Model\Post $postToRemove The Post to be removed
      * @return void
      */
-    public function removePost(\Pluswerk\Simpleblog\Domain\Model\Post $postToRemove)
-    {
+    public function removePost(\Pluswerk\Simpleblog\Domain\Model\Post $postToRemove) {
         $this->posts->detach($postToRemove);
     }
-    
+
     /**
      * Returns the posts
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pluswerk\Simpleblog\Domain\Model\Post> $posts
      */
-    public function getPosts()
-    {
+    public function getPosts() {
         return $this->posts;
     }
-    
+
     /**
      * Sets the posts
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pluswerk\Simpleblog\Domain\Model\Post> $posts
      * @return void
      */
-    public function setPosts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $posts)
-    {
+    public function setPosts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $posts) {
         $this->posts = $posts;
     }
 
