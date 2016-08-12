@@ -51,7 +51,7 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      */
     public function listAction() {
         $search = '';
-        if($this->request->hasArgument('search')) {
+        if ($this->request->hasArgument('search')) {
             $search = $this->request->getArgument('search');
         }
         $limit = ($this->settings['blog']['max']) ? : NULL;
@@ -64,6 +64,7 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      * @validate $blog Pluswerk.Simpleblog:Autocomplete(property=title)
      */
     public function addAction(\Pluswerk\Simpleblog\Domain\Model\Blog $blog) {
+        $this->addFlashMessage('Blog created successfully!', 'Status', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK, TRUE);
         $this->blogRepository->add($blog);
 //        for ($i = 1; $i <= 3; $i++) {
 //            $blog = $this->objectManager->get('Pluswerk\\Simpleblog\\Domain\\Model\\Blog');
