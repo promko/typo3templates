@@ -37,6 +37,11 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      */
     protected $blogRepository;
 
+    public function initializeAction() {
+        if ($this->arguments->hasArgument('blog')) {
+            $this->arguments->getArgument('blog')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');        }
+    }
+
     /**
      * @param \Pluswerk\Simpleblog\Domain\Repository\BlogRepository $blogRepository
      */

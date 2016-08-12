@@ -51,9 +51,9 @@ class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     /**
      * Picture of the blog
      *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @var string
      */
-    protected $image = null;
+    protected $image = '';
 
     /**
      * Blog posts
@@ -126,7 +126,7 @@ class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     /**
      * Returns the image
      *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     * @return string $image
      */
     public function getImage() {
         return $this->image;
@@ -135,18 +135,32 @@ class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     /**
      * Sets the image
      *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     * @param \array $image
      * @return void
      */
-    public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image) {
-        $this->image = $image;
+    public function setImage(array $image) {
+        if (!empty($image['name'])) {
+// Name of image
+            $imageName = $image['name'];
+// Temporary name (incl. path) in upload directory
+            $imageTempName = $image['tmp_name'];
+// get instance of BasicFileUtility
+            $basicFileUtility = \TYPO3\CMS\Core\Utility\GeneralUtility:: makeInstance('TYPO3\\CMS\\Core\\Utility\\File\\BasicFileUtility');
+// Get unique name (incl. path) in
+// uploads/tx_simpleblog/
+            $imageNameNew = $basicFileUtility->getUniqueName($imageName, \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('uploads/tx_simpleblog/'));
+// move copy of file into uploads folder
+            \TYPO3\CMS\Core\Utility\GeneralUtility:: upload_copy_move($imageTempName, $imageNameNew);
+// Setter of image name (w/o path)
+            $this->image = basename($imageNameNew);
+        }
     }
 
     /**
      * __construct
      */
     public function __construct() {
-        //Do not remove the next line: It would break the functionality
+//Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
 
