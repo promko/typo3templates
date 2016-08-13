@@ -154,3 +154,21 @@ config {
 [global]
 
 module.tx_simpleblog_bloglisting < plugin.tx_simpleblog_bloglisting
+
+config.tx_extbase {
+    persistence {
+            classes {
+                Pluswerk\Simpleblog\Domain\Model\FileReference {
+                    mapping {
+                        tableName = sys_file_reference
+                        columns {
+                            uid_local.mapOnProperty = originalFileIdentifier
+                        }
+                    }
+                }
+            }
+    }
+    objects {
+        TYPO3\CMS\Extbase\Domain\Model\FileReference.className = Pluswerk\Simpleblog\Domain\Model\FileReference
+    }
+}

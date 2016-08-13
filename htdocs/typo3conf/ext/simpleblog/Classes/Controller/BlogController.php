@@ -37,16 +37,24 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      */
     protected $blogRepository;
 
-    public function initializeAction() {
-        if ($this->arguments->hasArgument('blog')) {
-            $this->arguments->getArgument('blog')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');        }
-    }
-
     /**
      * @param \Pluswerk\Simpleblog\Domain\Repository\BlogRepository $blogRepository
      */
     public function injectBlogRepository(\Pluswerk\Simpleblog\Domain\Repository\BlogRepository $blogRepository) {
         $this->blogRepository = $blogRepository;
+    }
+
+    public function initializeObject() {
+//        $this->databaseHandle = $GLOBALS['TYPO3_DB'];
+//        $this->databaseHandle->explainOutput = 2;
+//        $this->databaseHandle->store_lastBuiltQuery = TRUE;
+//        $this->databaseHandle->debugOutput = 2;
+    }
+    
+    public function initializeAction() {
+//        if ($this->arguments->hasArgument('blog')) {
+//            $this->arguments->getArgument('blog')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+//        }
     }
 
     /**
@@ -56,10 +64,10 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      */
     public function listAction() {
         $search = '';
-        if ($this->request->hasArgument('search')) {
+        if ($this->request->hasArgument('search')){
             $search = $this->request->getArgument('search');
         }
-        $limit = ($this->settings['blog']['max']) ? : NULL;
+        $limit = ($this->settings['blog']['max']) ?: NULL;
         $this->view->assign('blogs', $this->blogRepository->findSearchForm($search, $limit));
         $this->view->assign('search', $search);
     }
@@ -67,8 +75,12 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     /**
      * @param \Pluswerk\Simpleblog\Domain\Model\Blog $blog
      */
-    public function rssAction(\Pluswerk\Simpleblog\Domain\Model\Blog $blog) {
+    public function addFormAction(\Pluswerk\Simpleblog\Domain\Model\Blog $blog = NULL) {
         $this->view->assign('blog', $blog);
+    }
+
+    public function initializeAddAction() {
+        $this->setTypeConverterConfigurationForImageUpload('blog');
     }
 
     /**
@@ -87,10 +99,14 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     }
 
     /**
-     * @param \Pluswerk\Simpleblog\Domain\Model\Blog $blog
+     *  @param \Pluswerk\Simpleblog\Domain\Model\Blog $blog 
      */
-    public function addFormAction(\Pluswerk\Simpleblog\Domain\Model\Blog $blog = NULL) {
+    public function showAction(\Pluswerk\Simpleblog\Domain\Model\Blog $blog) {
         $this->view->assign('blog', $blog);
+    }
+
+    public function initializeUpdateAction() {
+        $this->setTypeConverterConfigurationForImageUpload('blog');
     }
 
     /**
@@ -107,6 +123,25 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         $this->blogRepository->update($blog);
         $this->redirect('list');
     }
+    
+    protected function setTypeConverterConfigurationForImageUpload($argumentName) {
+        $uploadConfiguration = array(
+            \Pluswerk\Simpleblog\Property\TypeConverter\UploadedFileReferenceConverter::CONFIGURATION_ALLOWED_FILE_EXTENSIONS => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
+            \Pluswerk\Simpleblog\Property\TypeConverter\UploadedFileReferenceConverter::CONFIGURATION_UPLOAD_FOLDER => '1:/simpleblog/',
+        );
+        $newExampleConfiguration = $this->arguments[$argumentName]->getPropertyMappingConfiguration();
+        $newExampleConfiguration->forProperty('image')
+                ->setTypeConverterOptions(
+                        'Pluswerk\\Simpleblog\\Property\\TypeConverter\\UploadedFileReferenceConverter', $uploadConfiguration
+        );
+    }
+
+    /**
+     * @param \Pluswerk\Simpleblog\Domain\Model\Blog $blog
+     */
+    public function rssAction(\Pluswerk\Simpleblog\Domain\Model\Blog $blog) {
+        $this->view->assign('blog', $blog);
+    }
 
     /**
      * @param \Pluswerk\Simpleblog\Domain\Model\Blog $blog
@@ -119,22 +154,8 @@ class BlogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     /**
      *  @var \Pluswerk\Simpleblog\Domain\Model\Blog $blog 
      */
-    public function showAction(\Pluswerk\Simpleblog\Domain\Model\Blog $blog) {
-        $this->view->assign('blog', $blog);
-    }
-
-    /**
-     *  @var \Pluswerk\Simpleblog\Domain\Model\Blog $blog 
-     */
     public function deleteConfirmAction(\Pluswerk\Simpleblog\Domain\Model\Blog $blog) {
         $this->view->assign('blog', $blog);
-    }
-
-    public function initializeObject() {
-//        $this->databaseHandle = $GLOBALS['TYPO3_DB'];
-//        $this->databaseHandle->explainOutput = 2;
-//        $this->databaseHandle->store_lastBuiltQuery = TRUE;
-//        $this->databaseHandle->debugOutput = 2;
     }
 
 }
