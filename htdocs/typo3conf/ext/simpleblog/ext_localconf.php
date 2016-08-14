@@ -31,5 +31,11 @@ $signalSlotDispatcher->connect(
 'Pluswerk\\Simpleblog\\Service\\SignalService',
 'handleCommentInsertion'
 );
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Pluswerk\\Simpleblog\\Command\\FileCommandController'] = array(
+'extension' => $_EXTKEY,
+'title' => 'Filecenter Delete Files',
+'description' => 'Deletes Files in Filecenter after the defined period of time',
+'additionalFields' => ''
+);
 
 
