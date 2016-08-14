@@ -26,4 +26,19 @@ class SignalService implements \TYPO3\CMS\Core\SingletonInterface {
         fclose($handle);
     }
 
+    /**
+     * @param \TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface $comment
+     * @param \TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface $post
+     * @param $signalInformation string
+     */
+    public function handleCommentInsertion(
+    \TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface $comment, 
+    \TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface $post, 
+    $signalInformation) {
+        $content = 'Comment: ' . $comment->getComment();
+        $content .= ' (Post: ' . $post->getTitle() . ')';
+        $content .= " / " . $signalInformation . chr(10);
+        $this->writeLogFile($content);
+    }
+
 }

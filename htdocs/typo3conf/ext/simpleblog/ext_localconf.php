@@ -25,5 +25,11 @@ $signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
 $signalSlotDispatcher->connect(
         'TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Backend', 'afterInsertObject', 'Pluswerk\\Simpleblog\\Service\\SignalService', 'handleInsertEvent'
 );
+$signalSlotDispatcher->connect(
+'Pluswerk\\Simpleblog\\Controller\\PostController',
+'beforeCommentCreation',
+'Pluswerk\\Simpleblog\\Service\\SignalService',
+'handleCommentInsertion'
+);
 
 
