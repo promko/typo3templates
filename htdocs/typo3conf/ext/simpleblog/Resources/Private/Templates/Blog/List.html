@@ -1,5 +1,7 @@
 <f:layout name="Default">
     <f:section name="main">
+        <p><f:link.action controller="Json" action="json" pageType="99" class="btn btn-warning">JSON-TEST</f:link.action></p>
+
         {namespace simpleblog=Pluswerk\Simpleblog\ViewHelpers}
         <simpleblog:DummyText length="400">This is a dummy text! </simpleblog:DummyText>
         <h3><simpleblog:tsfe>page|title</simpleblog:tsfe></h3>
