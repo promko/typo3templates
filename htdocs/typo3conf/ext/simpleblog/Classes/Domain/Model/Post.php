@@ -1,7 +1,8 @@
 <?php
+
 namespace Pluswerk\Simpleblog\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *
  *  Copyright notice
  *
@@ -24,13 +25,12 @@ namespace Pluswerk\Simpleblog\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Post
  */
-class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-{
+class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
     /**
      * title
@@ -39,21 +39,29 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @validate NotEmpty
      */
     protected $title = '';
-    
+
     /**
      * content
      *
      * @var string
      */
     protected $content = '';
-    
+
     /**
      * postdate
      *
      * @var \DateTime
      */
     protected $postdate = null;
-    
+
+    /**
+     * Images
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+     * @lazy
+     */
+    protected $images;
+
     /**
      * comments
      *
@@ -62,94 +70,105 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @lazy
      */
     protected $comments = null;
-    
+
     /**
      * author
      *
      * @var \Pluswerk\Simpleblog\Domain\Model\Author
      */
     protected $author = null;
-    
+
     /**
      * tags
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pluswerk\Simpleblog\Domain\Model\Tag>
      */
     protected $tags = null;
-    
+
     /**
      * Returns the title
      *
      * @return string $title
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
-    
+
     /**
      * Sets the title
      *
      * @param string $title
      * @return void
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
     }
-    
+
     /**
      * Returns the content
      *
      * @return string $content
      */
-    public function getContent()
-    {
+    public function getContent() {
         return $this->content;
     }
-    
+
     /**
      * Sets the content
      *
      * @param string $content
      * @return void
      */
-    public function setContent($content)
-    {
+    public function setContent($content) {
         $this->content = $content;
     }
-    
+
     /**
      * Returns the postdate
      *
      * @return \DateTime $postdate
      */
-    public function getPostdate()
-    {
+    public function getPostdate() {
         return $this->postdate;
     }
-    
+
     /**
      * Sets the postdate
      *
      * @param \DateTime $postdate
      * @return void
      */
-    public function setPostdate(\DateTime $postdate)
-    {
+    public function setPostdate(\DateTime $postdate) {
         $this->postdate = $postdate;
     }
-    
+
+    /**
+     * Images Setter
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
+     * @return void
+     */
+    public function setImages($images) {
+        $this->images = $images;
+    }
+
+    /**
+     * Images Getter
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     */
+    public function getImages() {
+        return $this->images;
+    }
+
     /**
      * __construct
      */
-    public function __construct()
-    {
+    public function __construct() {
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
         $this->setPostdate(new \DateTime());
+        $this->images = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
-    
+
     /**
      * Initializes all ObjectStorage properties
      * Do not modify this method!
@@ -158,116 +177,105 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return void
      */
-    protected function initStorageObjects()
-    {
+    protected function initStorageObjects() {
         $this->comments = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
-    
+
     /**
      * Adds a Comment
      *
      * @param \Pluswerk\Simpleblog\Domain\Model\Comment $comment
      * @return void
      */
-    public function addComment(\Pluswerk\Simpleblog\Domain\Model\Comment $comment)
-    {
+    public function addComment(\Pluswerk\Simpleblog\Domain\Model\Comment $comment) {
         $this->comments->attach($comment);
     }
-    
+
     /**
      * Removes a Comment
      *
      * @param \Pluswerk\Simpleblog\Domain\Model\Comment $commentToRemove The Comment to be removed
      * @return void
      */
-    public function removeComment(\Pluswerk\Simpleblog\Domain\Model\Comment $commentToRemove)
-    {
+    public function removeComment(\Pluswerk\Simpleblog\Domain\Model\Comment $commentToRemove) {
         $this->comments->detach($commentToRemove);
     }
-    
+
     /**
      * Returns the comments
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pluswerk\Simpleblog\Domain\Model\Comment> $comments
      */
-    public function getComments()
-    {
+    public function getComments() {
         return $this->comments;
     }
-    
+
     /**
      * Sets the comments
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pluswerk\Simpleblog\Domain\Model\Comment> $comments
      * @return void
      */
-    public function setComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $comments)
-    {
+    public function setComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $comments) {
         $this->comments = $comments;
     }
-    
+
     /**
      * Returns the author
      *
      * @return \Pluswerk\Simpleblog\Domain\Model\Author $author
      */
-    public function getAuthor()
-    {
+    public function getAuthor() {
         return $this->author;
     }
-    
+
     /**
      * Sets the author
      *
      * @param \Pluswerk\Simpleblog\Domain\Model\Author $author
      * @return void
      */
-    public function setAuthor(\Pluswerk\Simpleblog\Domain\Model\Author $author)
-    {
+    public function setAuthor(\Pluswerk\Simpleblog\Domain\Model\Author $author) {
         $this->author = $author;
     }
-    
+
     /**
      * Adds a Tag
      *
      * @param \Pluswerk\Simpleblog\Domain\Model\Tag $tag
      * @return void
      */
-    public function addTag(\Pluswerk\Simpleblog\Domain\Model\Tag $tag)
-    {
+    public function addTag(\Pluswerk\Simpleblog\Domain\Model\Tag $tag) {
         $this->tags->attach($tag);
     }
-    
+
     /**
      * Removes a Tag
      *
      * @param \Pluswerk\Simpleblog\Domain\Model\Tag $tagToRemove The Tag to be removed
      * @return void
      */
-    public function removeTag(\Pluswerk\Simpleblog\Domain\Model\Tag $tagToRemove)
-    {
+    public function removeTag(\Pluswerk\Simpleblog\Domain\Model\Tag $tagToRemove) {
         $this->tags->detach($tagToRemove);
     }
-    
+
     /**
      * Returns the tags
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pluswerk\Simpleblog\Domain\Model\Tag> $tags
      */
-    public function getTags()
-    {
+    public function getTags() {
         return $this->tags;
     }
-    
+
     /**
      * Sets the tags
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pluswerk\Simpleblog\Domain\Model\Tag> $tags
      * @return void
      */
-    public function setTags(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags)
-    {
+    public function setTags(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags) {
         $this->tags = $tags;
     }
 
